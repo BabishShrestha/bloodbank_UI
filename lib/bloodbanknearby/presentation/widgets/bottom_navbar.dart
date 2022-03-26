@@ -13,7 +13,6 @@ class BottomBar extends StatelessWidget {
       selectedItemColor: kAppBarColor,
       enableFeedback: true,
       unselectedItemColor: kUnselectedColor,
-      elevation: 0,
       items: _BottomNavItems,
     );
   }

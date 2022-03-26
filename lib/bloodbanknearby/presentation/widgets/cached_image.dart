@@ -7,19 +7,20 @@ class CachedImage extends StatelessWidget {
     required this.url,
   }) : super(key: key);
 
-  final String? url;
+  final String url;
 
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       errorWidget: (context, url, error) => const Icon(Icons.error),
       placeholder: (BuildContext context, url) => const Center(
-          child: CircularProgressIndicator(
-        color: Colors.green,
-        backgroundColor: Colors.grey,
-      )),
+        child: CircularProgressIndicator(
+          color: Colors.green,
+          backgroundColor: Colors.grey,
+        ),
+      ),
       fit: BoxFit.cover,
-      imageUrl: url!,
+      imageUrl: url,
       height: 70,
       width: 80,
     );

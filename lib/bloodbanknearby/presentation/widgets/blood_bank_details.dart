@@ -39,10 +39,12 @@ class BloodBankDetails extends StatelessWidget {
               Icons.location_on,
               color: kLocationColor,
             ),
-            Text(
-              '${bloodBank.location} Km far away',
-              style:
-                  kCardTitleStyle.copyWith(fontSize: 12, color: kLocationColor),
+            Expanded(
+              child: Text(
+                '${(bloodBank.location)?.substring(1, 3)} Km away',
+                style: kCardTitleStyle.copyWith(
+                    fontSize: 12, color: kLocationColor),
+              ),
             )
           ],
         ),

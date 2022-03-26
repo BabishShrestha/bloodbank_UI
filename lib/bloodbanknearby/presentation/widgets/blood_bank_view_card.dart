@@ -6,9 +6,8 @@ import '../../domain/entities/blood_bank.dart';
 import 'widgets.dart';
 
 class BloodBank_ViewCard extends StatelessWidget {
-  final BloodBank bloodBank;
-
-  const BloodBank_ViewCard({required this.bloodBank});
+  BloodBank bloodBank;
+  BloodBank_ViewCard({required this.bloodBank});
 
   @override
   Widget build(BuildContext context) {
@@ -17,37 +16,35 @@ class BloodBank_ViewCard extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         elevation: 10,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        child: bloodBank.image == ""
-            ? const NotFound_Widget()
-            : Container(
-                margin: kCardTileMargin,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: CachedImage(
-                        url: bloodBank.image,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: BloodBankDetails(bloodBank: bloodBank),
-                    ),
-                    const Flexible(
-                      child: CardIconButton(
-                        icon: FontAwesomeIcons.phone,
-                      ),
-                    ),
-                    const Flexible(
-                        child: CardIconButton(
-                      icon: FontAwesomeIcons.message,
-                    )),
-                  ],
-                )));
+        child: Container(
+            margin: kCardTileMargin,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: CachedImage(
+                    url: bloodBank.image.toString(),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  flex: 3,
+                  child: BloodBankDetails(bloodBank: bloodBank),
+                ),
+                const Flexible(
+                  child: CardIconButton(
+                    icon: FontAwesomeIcons.phone,
+                  ),
+                ),
+                const Flexible(
+                    child: CardIconButton(
+                  icon: FontAwesomeIcons.message,
+                )),
+              ],
+            )));
   }
 }
 
