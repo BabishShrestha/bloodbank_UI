@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 const kAppBarColor = Color(0xff24627F);
 const kUnselectedColor = Colors.grey;
 const kPrimaryScaffoldColor = Color(0xffECF7FB);
-const kBorderColor = Colors.blue;
+const kBorderColor = Colors.blueGrey;
 const kLocationColor = Colors.green;
 
 //margin and padding
