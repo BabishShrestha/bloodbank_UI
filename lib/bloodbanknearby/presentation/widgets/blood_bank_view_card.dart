@@ -1,9 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../shared/constants.dart';
+import '../../../core/util/constants.dart';
 import '../../domain/entities/blood_bank.dart';
+import 'widgets.dart';
 
 class BloodBank_ViewCard extends StatelessWidget {
   final BloodBank bloodBank;
@@ -18,73 +18,52 @@ class BloodBank_ViewCard extends StatelessWidget {
         elevation: 10,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: bloodBank.image == ""
-            ? Center(
-                child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(width: 2, color: kBorderColor),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(15)),
-                height: 100,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Lottie.asset('assets/404-notfound.json')),
-              ))
+            ? const NotFound_Widget()
             : Container(
-                margin: const EdgeInsets.all(15),
+                margin: kCardTileMargin,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      child: CachedNetworkImage(
-                        placeholder: (BuildContext context, url) =>
-                            const Center(
-                                child: CircularProgressIndicator(
-                          color: Colors.green,
-                          backgroundColor: Colors.grey,
-                        )),
-                        fit: BoxFit.cover,
-                        imageUrl:
-                            'https://media.istockphoto.com/photos/patan-picture'
-                            '-id637268486?k=20&m=637268486&s=170667a&w=0&h=0pUzYinL9hLFC8yPRWWCOM0JHqkx-kuu76PdJFbMQI0=',
-                        height: 100,
-                        width: 100,
+                      child: CachedImage(
+                        url: bloodBank.image,
                       ),
                     ),
-                    Column(
-                      children: [
-                        RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                                text: "${bloodBank.name}\n",
-                                style: kCardTitleStyle,
-                                children: [
-                                  TextSpan(
-                                    text:
-                                        "Blood Group:  ${bloodBank.blood_group}\n",
-                                    style: kCardTitleStyle.copyWith(
-                                        fontSize: 14, color: kAppBarColor),
-                                  ),
-                                  TextSpan(
-                                    text: 'Phone Number: ${bloodBank.phone}',
-                                    style: kCardTitleStyle.copyWith(
-                                        fontSize: 14, color: kAppBarColor),
-                                  ),
-                                ])),
-                        Row(
-                          children: [
-                            Icon(Icons.location_on),
-                          ],
-                        )
-                      ],
+                    const SizedBox(
+                      width: 10,
                     ),
+                    Expanded(
+                      flex: 3,
+                      child: BloodBankDetails(bloodBank: bloodBank),
+                    ),
+                    const Flexible(
+                      child: CardIconButton(
+                        icon: FontAwesomeIcons.phone,
+                      ),
+                    ),
+                    const Flexible(
+                        child: CardIconButton(
+                      icon: FontAwesomeIcons.message,
+                    )),
                   ],
-                ))
-        // ListTile(
-        //   tileColor: kPrimaryScaffoldColor,
-        //   leading: ,
+                )));
+  }
+}
 
-        // ),
-        );
+class CardIconButton extends StatelessWidget {
+  final IconData? icon;
+
+  const CardIconButton({Key? key, required this.icon}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {},
+      icon: Icon(
+        icon,
+        color: kAppBarColor,
+      ),
+    );
   }
 }
