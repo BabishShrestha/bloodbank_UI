@@ -4,7 +4,7 @@ class BloodBankModel extends BloodBank {
   BloodBankModel(
       {required String? name,
       required String? location,
-      required int? phone,
+      required String? phone,
       String? blood_group,
       String? image})
       : super(
@@ -18,7 +18,7 @@ class BloodBankModel extends BloodBank {
     return BloodBankModel(
       name: json['name'],
       location: json['address']['street'],
-      phone: (json['phone'] as num).toInt(),
+      phone: json['phone'],
     );
   }
 }

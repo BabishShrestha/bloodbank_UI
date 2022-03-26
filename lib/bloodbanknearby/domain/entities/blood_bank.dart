@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 class BloodBank extends Equatable {
   final String? name;
   final String? location;
-  final int? phone;
+  final String? phone;
   final String? blood_group;
   final String? image;
 
